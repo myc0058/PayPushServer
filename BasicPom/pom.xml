@@ -1,0 +1,128 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>com.myc0058.paypush</groupId>
+	<artifactId>BasicPom</artifactId>
+	<version>0.0.1</version>
+	<packaging>pom</packaging>
+
+	<description>기본 POM. JDK 버전 및 인코딩 등을 설정함.</description>
+
+	<properties>
+		<compileSource>1.7</compileSource>
+
+		<spring.version>3.0.5.RELEASE</spring.version>
+	</properties>
+
+	<build>
+		<sourceDirectory>src</sourceDirectory>
+
+		<resources>
+			<resource>
+			    
+				<directory>src</directory>
+				<excludes>
+					<exclude>**/*.java</exclude>
+				</excludes>
+				<filtering>true</filtering>
+			</resource>
+			<!-- 
+			<resource>
+				<directory>WebContent</directory>
+            	<filtering>true</filtering>
+			</resource>
+			 -->
+		</resources>
+
+		<testSourceDirectory>test</testSourceDirectory>
+
+		<testResources>
+			<testResource>
+				<directory>test</directory>
+				<excludes>
+					<exclude>**/*.java</exclude>
+				</excludes>
+				<filtering>true</filtering>
+			</testResource>
+		</testResources>
+
+		<plugins>
+			<!-- java compile 설정 -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.1</version>
+				<configuration>
+					<source>${compileSource}</source>
+					<target>${compileSource}</target>
+					<encoding>UTF-8</encoding>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-source-plugin</artifactId>
+				<version>2.2.1</version>
+				<executions>
+					<execution>
+						<id>attach-sources</id>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-resources-plugin</artifactId>
+				<version>2.6</version>
+				<configuration>
+					<encoding>UTF-8</encoding>
+				</configuration>
+			</plugin>
+			
+			 
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>2.0.2</version>
+				<configuration>
+					<webResources>
+						<resource>
+							<directory>${basedir}/WebContent</directory>
+						</resource>
+					</webResources>
+					<warSourceDirectory>WebContent</warSourceDirectory>
+					<warSourceExcludes>WebContent/WEB-INF/lib/*.jar</warSourceExcludes>
+					<archiveClasses>false</archiveClasses>
+					<archive>
+						<manifest>
+							<addClasspath>true</addClasspath>
+							<classpathPrefix />
+						</manifest>
+						<manifestEntries>
+							<url>${pom.url}</url>
+							<Implementation-Build>${buildNumber}</Implementation-Build>
+							<Implementation-Title>${project.name}</Implementation-Title>
+							<Implementation-Vendor>CEJUG</Implementation-Vendor>
+							<Implementation-Version>${project.version}</Implementation-Version>
+							<Built-By>${user.name}</Built-By>
+							<Built-OS>${os.name}</Built-OS>
+							<Build-Date>${timestamp}</Build-Date>
+							<SCM>${buildNumber}</SCM>
+						</manifestEntries>
+					</archive>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+	<modules>
+		<module>../PayPushCommonModule</module>
+		<module>../PayPushServer</module>
+	</modules>
+
+</project>

@@ -1,0 +1,145 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<!-- 부모 POM 지정 : packaging이 pom인 경우만 가능 -->
+	<parent>
+		<groupId>com.myc0058.paypush</groupId>
+		<artifactId>BasicPom</artifactId>
+		<version>0.0.1</version>
+		<relativePath>../BasicPom/pom.xml</relativePath>
+	</parent>
+
+	<!-- Maven Coordinates (RDBMS의 복합PK로 생각하면 가장 쉬움) -->
+	<artifactId>PayPushServer</artifactId>
+	<packaging>war</packaging>
+
+	<description>Pay Push Server</description>
+
+	<build>
+		<finalName>PayPushServer</finalName>
+
+		<plugins>
+			<!-- war 설정 -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<configuration>
+					<webXml>WebContent/WEB-INF/web.xml</webXml>
+				</configuration>
+			</plugin>
+
+			<!-- jetty 설정 -->
+			<plugin>
+				<groupId>org.mortbay.jetty</groupId>
+				<artifactId>maven-jetty-plugin</artifactId>
+				<version>6.1.11</version>
+				<configuration>
+					<contextPath>/PayPushServer</contextPath>
+					<webAppSourceDirectory>WebContent</webAppSourceDirectory>
+					<scanIntervalSeconds>3</scanIntervalSeconds>
+					<!-- 포트를 변경하고 싶은 경우 connectors 설정 이용 -->
+					<connectors>
+						<connector implementation="org.mortbay.jetty.nio.SelectChannelConnector">
+							<port>2222</port>
+							<maxIdleTime>60000</maxIdleTime>
+						</connector>
+					</connectors>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+	<repositories>
+		<repository>
+			<id>gcm-server-repository</id>
+			<url>https://github.com/slorber/gcm-server-repository/raw/master/releases/</url>
+		</repository>
+	</repositories>
+
+	<dependencies>
+		<dependency>
+			<groupId>com.myc0058.paypush</groupId>
+			<artifactId>PayPushCommonModule</artifactId>
+			<version>0.0.1</version>
+		</dependency>
+
+		<!-- Spring dependencies (MVC) -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+
+		<!-- Needed by the org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter -->
+		<dependency>
+			<groupId>xalan</groupId>
+			<artifactId>xalan</artifactId>
+			<version>2.7.1</version>
+		</dependency>
+
+		<!-- Commons stuff -->
+		<dependency>
+			<groupId>commons-beanutils</groupId>
+			<artifactId>commons-beanutils</artifactId>
+			<version>1.8.0</version>
+		</dependency>
+
+		<!-- need serialization -->
+		<dependency>
+			<groupId>com.google.code.gson</groupId>
+			<artifactId>gson</artifactId>
+			<version>2.3.1</version>
+		</dependency>
+
+		<!--  APNS -->
+		<dependency>
+			<groupId>com.github.fernandospr</groupId>
+			<artifactId>javapns-jdk16</artifactId>
+			<version>2.2.1</version>
+		</dependency>
+
+		<!-- for javapns -->
+		<dependency> 
+			<groupId>org.bouncycastle</groupId>
+			<artifactId>bcprov-jdk16</artifactId>
+			<version>1.46</version>
+		</dependency>
+
+		<!-- GCM -->
+		<dependency>
+			<groupId>com.google.android.gcm</groupId>
+			<artifactId>gcm-server</artifactId>
+			<version>1.0.2</version>
+		</dependency>
+
+		<!--  for IOS Billing Module -->
+		<dependency>
+			<groupId>net.sf.json-lib</groupId>
+			<artifactId>json-lib</artifactId>
+			<classifier>jdk15</classifier>
+			<version>2.4</version>
+		</dependency>
+		
+		<!-- for http request -->
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpclient</artifactId>
+			<version>4.3.2</version>
+		</dependency>
+
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.11</version>
+		</dependency>
+
+		<!-- for Base64 -->
+		<dependency>
+			<groupId>commons-codec</groupId>
+			<artifactId>commons-codec</artifactId>
+			<version>1.10</version>
+		</dependency>
+
+	</dependencies>
+</project>

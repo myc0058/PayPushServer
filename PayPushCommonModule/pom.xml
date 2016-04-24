@@ -1,0 +1,17 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<!-- 부모 POM 지정 : packaging이 pom인 경우만 가능 -->
+	<parent>
+		<groupId>com.myc0058.paypush</groupId>
+		<artifactId>BasicPom</artifactId>
+		<version>0.0.1</version>
+		<relativePath>../BasicPom/pom.xml</relativePath>
+	</parent>
+
+	<!-- Maven Coordinates (RDBMS의 복합PK로 생각하면 가장 쉬움) -->
+	<artifactId>PayPushCommonModule</artifactId>
+	<description>지불푸시 공통모듈</description>
+
+</project>
