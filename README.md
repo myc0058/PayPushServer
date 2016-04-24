@@ -20,7 +20,15 @@
 
 # PayPushServer - How to run
 
-  * mvn jetty:run
+  * Compile All
+  mvn -f ./BasicPom/pom.xml compile
+ 
+  * Run /PayPushServer
+  mvn -f ./PayPushServer/pom.xml jetty:run 
+  
+  * Test
+  Get http://127.0.0.1:2222/PayPushServer/test.do
+
 
 # Q&A
 
