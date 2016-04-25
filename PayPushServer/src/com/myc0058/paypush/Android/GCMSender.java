@@ -23,7 +23,7 @@ public class GCMSender {
 	private Sender gcmSender;
 
 	/**
-	 * Contructor.
+	 * Constructor.
 	 */
 	public GCMSender() {
 		gcmSender = new Sender(PayPushGlobalConsts.GCM_API_KEY);

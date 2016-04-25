@@ -18,7 +18,7 @@ public final class PayPushGlobalConsts {
 	// IOS
 	public static final String DEV_CERTIFICATE = "/dev_key.p12";
 	public static final String PRO_CERTIFICATE = "/pro_key.p12";
-	public static final String CERTI_PASSWORD = "actoz";
+	public static final String CERTI_PASSWORD = "password";
 	public static final String DEV_APNSADDRESS = 
 			"gateway.sandbox.push.apple.com";
 	public static final String PRO_APNSADDRESS = "gateway.push.apple.com";
@@ -41,7 +41,7 @@ public final class PayPushGlobalConsts {
 			"AIzaSyBUWn7nKFaU6BYtr75nP9pJGnxxhTWqPL0";
 	
 	//패키지명
-	public static final String PACKAGE_NAME = "com.neocyon.eraofheroes";
+	public static final String PACKAGE_NAME = "com.apk.packagename";
 	
 	public static final String RSA_PUBLIC_KEY = 
 			"MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAqqYXiDaR08tyo"
